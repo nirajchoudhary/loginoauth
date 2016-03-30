@@ -1,0 +1,84 @@
+{% extends "parenthtml.html" %}
+
+{% block title %} Link Page {% endblock %}
+{% block content %}	
+	<div class='form_container'>
+		<p>	Hi, You logged in first time through social account.
+			So you will have to link the social account with your app account.
+		</p>
+		<hr/>
+		<p>
+			Do you have an app account?
+		</p>
+		<br>
+		<p>
+			<center>
+				<button type="button" class="btn btn-info btn-lg" id="confBtn1" data-toggle="modal" data-target="#modal1"> Yes </button>
+				<button type="button" class="btn btn-info btn-lg" id="confBtn2"data-toggle="modal" data-target="#modal2">No </button>
+			</center>
+		</p>
+
+		<!-- Modal -->
+		<div class="modal fade" id="modal1" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">User Credentials</h4>
+					</div>
+					<div class="modal-body">
+						<form name="myForm1" action="{% url 'logintest.views.oldUserLogin' %}" method="POST">  			{% csrf_token %}
+							<label>UserId:</label>
+							<br>
+							<input style="width:92%;" type="text" id="userid" name="userid" placeholder="Enter userId..." required="required" />
+							<br>
+							<p></p>
+							<label>Password:</label>
+							<br>
+							<input style="width:92%;" type="password" id="passwd" name="passwd" placeholder="Enter Password..." required="required" />
+							<input type="hidden" name="oAuthType" value="{{ loginType }}">
+							<hr />
+							<cetnter><button type="submit" name="submit" class="btn btn-default" >Submit</button>
+							</cetnter>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="modal2" role="dialog">
+			<div class="modal-dialog modal-sm">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Create Account</h4>
+					</div>
+					<div class="modal-body">
+						<form name="myForm" id="myForm2" action="{% url 'logintest.views.NewUserLogin' %}" method="POST">{% csrf_token %}
+							<label>UserId:</label>
+							<br>
+							<input style="width:92%;" type="text" id="userid" name="userid" placeholder="Enter userId..." required="required" pattern="[A-Za-z]{1}[A-Za-z0-9_@.]+" />
+							<br>
+							<p></p>
+							<label>Password:</label>
+							<br>
+							<input style="width:92%;" type="password" id="passwd1" name="passwd" placeholder="Enter Password..." required="required" />	
+							<p></p>					
+							<label>Confirm Password:</label>
+							<br>
+							<input style="width:92%;" type="password" id="Confpasswd1" name="Confpasswd" placeholder="Re-Enter Password..." required="required" />
+							<p class='error_login' id='matching_status'></p>
+							<input type="hidden" name="oAuthType" value="{{ loginType }}">
+							<hr/>
+							<cetnter><button type="submit" name="submit" class="btn btn-default" >Submit</button>
+							</cetnter>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<h4 class='error_login' id='activate_error'>{{ error }}</h4> 
+	</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+.form{
+	background-color:lightgrey;
+	padding:20px;
+	margin-left: 90px;
+	margin-right: 90px;
+}
+
+
+
+.admin{
+	padding:20px;
+	margin-left: 10%;
+}
+.reset_form{
+	padding-left : 500px; 
+}
+
+.error{
+	color:red;
+	font-size: 15px;
+}
+
+.error_login{
+	margin-left: 9%;
+}

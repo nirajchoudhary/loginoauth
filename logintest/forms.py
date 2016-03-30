@@ -1,0 +1,17 @@
+#-*- coding: utf-8 -*-
+from django import forms
+
+class LoginForm(forms.Form):
+	userid = forms.CharField(max_length = 50)
+	passwd = forms.CharField(widget = forms.PasswordInput())
+	oauthid = forms.CharField(max_length = 75)
+
+class LoggedinForm(forms.Form):
+	userID = forms.CharField(max_length = 50)
+	uname = forms.CharField(max_length = 50)
+	add = forms.CharField(max_length = 100)
+	city = forms.CharField(max_length = 50)
+	state = forms.CharField(max_length = 30)
+	country = forms.CharField(max_length = 50)
+	pin = forms.CharField(max_length = 6)
+	contactno = forms.CharField(max_length = 10)
